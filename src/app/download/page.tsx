@@ -74,41 +74,47 @@ export default function DownloadPage() {
                         <ScrollAnimation animation="fadeUp" delay={0.5}>
                             <div className="pt-8">
                                 <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                                    <div className="flex items-start gap-4">
-                                        <QrCode className="w-8 h-8 text-primary shrink-0 mt-1" />
-                                        <div className="flex-1">
-                                            <h3 className="font-bold text-lg mb-2 text-primary-dark">Scan to Download</h3>
-                                            <p className="text-sm text-muted-foreground mb-4">
-                                                Use your phone&apos;s camera to scan and download the Android app from Google Play Store
-                                            </p>
-                                            <div className="flex items-center gap-6">
-                                                <div className="text-center">
-                                                    <div className="w-40 h-40 bg-white rounded-xl border-2 border-green-500/30 p-2 hover:border-green-500 transition-colors">
-                                                        <Image
-                                                            src="/qr-download.png"
-                                                            alt="Scan to download FUELabc from Google Play Store"
-                                                            fill
-                                                            className="object-contain p-2"
-                                                        />
-                                                    </div>
-                                                    <p className="text-xs text-muted-foreground mt-2 font-medium flex items-center justify-center gap-1">
-                                                        <Smartphone className="w-3 h-3 text-green-600" />
-                                                        Google Play Store
-                                                    </p>
+                                    <div className="flex flex-col md:flex-row items-center gap-8">
+                                        <div className="shrink-0">
+                                            <div className="w-48 h-48 bg-white rounded-xl border-2 border-green-500/30 p-2 hover:border-green-500 transition-colors shadow-sm mx-auto">
+                                                <div className="relative w-full h-full">
+                                                    <Image
+                                                        src="/qr-download.png"
+                                                        alt="Scan to download FUELabc from Google Play Store"
+                                                        fill
+                                                        className="object-contain p-1"
+                                                    />
                                                 </div>
-                                                <div className="flex-1 space-y-2">
-                                                    <div className="flex items-center gap-2 text-sm">
-                                                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                                                        <span className="text-muted-foreground">Works on Android devices</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 text-sm">
-                                                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                                                        <span className="text-muted-foreground">Direct link to Play Store</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 text-sm">
-                                                        <div className="w-2 h-2 rounded-full bg-primary"></div>
-                                                        <span className="text-muted-foreground">Quick & easy installation</span>
-                                                    </div>
+                                            </div>
+                                            <p className="text-xs text-muted-foreground mt-3 font-medium flex items-center justify-center gap-1.5">
+                                                <Smartphone className="w-3.5 h-3.5 text-green-600" />
+                                                Scan to Download
+                                            </p>
+                                        </div>
+
+                                        <div className="flex-1 text-center md:text-left space-y-4">
+                                            <div>
+                                                <h3 className="font-bold text-xl mb-2 text-primary-dark flex items-center justify-center md:justify-start gap-2">
+                                                    <QrCode className="w-5 h-5 text-primary" />
+                                                    Quick Download
+                                                </h3>
+                                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                                    Use your phone&apos;s camera to scan the QR code and instantly download the FUELabc app from the Google Play Store.
+                                                </p>
+                                            </div>
+
+                                            <div className="grid gap-3 pt-2">
+                                                <div className="flex items-center gap-3 text-sm justify-center md:justify-start bg-green-50/50 p-2 rounded-lg">
+                                                    <div className="w-2 h-2 rounded-full bg-green-500 shrink-0"></div>
+                                                    <span className="text-muted-foreground font-medium">Works on all Android devices</span>
+                                                </div>
+                                                <div className="flex items-center gap-3 text-sm justify-center md:justify-start bg-green-50/50 p-2 rounded-lg">
+                                                    <div className="w-2 h-2 rounded-full bg-green-500 shrink-0"></div>
+                                                    <span className="text-muted-foreground font-medium">Direct secure link to Play Store</span>
+                                                </div>
+                                                <div className="flex items-center gap-3 text-sm justify-center md:justify-start bg-primary/5 p-2 rounded-lg">
+                                                    <div className="w-2 h-2 rounded-full bg-primary shrink-0"></div>
+                                                    <span className="text-muted-foreground font-medium">Fast & easy installation</span>
                                                 </div>
                                             </div>
                                         </div>

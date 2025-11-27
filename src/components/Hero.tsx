@@ -35,7 +35,7 @@ export function Hero() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                         </span>
-                        SMART FUEL MANAGEMENT
+                        India’s first app that calculates fuel costs for alternate routes
                     </motion.div>
 
                     <motion.h1
@@ -55,7 +55,7 @@ export function Hero() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="text-xl text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed"
                     >
-                        FUEL abc is an innovative solution to help you save{" "}
+                        FUELabc is an innovative solution to help you save{" "}
                         <span className="inline-flex items-center px-3 py-1 bg-accent/20 text-primary-dark font-bold rounded-full border border-accent/50 animate-pulse-scale">
                             up to 30%
                         </span>{" "}

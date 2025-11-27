@@ -8,7 +8,7 @@ import { Download, Users, Droplets, Star } from "lucide-react";
 const stats = [
     { label: "Downloads", value: 700000, suffix: "+", prefix: "", icon: Download },
     { label: "Paid Users", value: 20000, suffix: "+", prefix: "", icon: Users },
-    { label: "Fuel Saved", value: 1.2, suffix: "M L", prefix: "", icon: Droplets },
+    { label: "Fuel Saved", value: 1.2, suffix: "M Ltr", prefix: "", icon: Droplets },
     { label: "App Rating", value: 4.1, suffix: "/5", prefix: "", icon: Star },
 ];
 

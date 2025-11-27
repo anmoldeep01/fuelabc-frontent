@@ -24,13 +24,16 @@ export function CTA() {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                             <Link href="/download">
-                                <Button size="lg" className="w-full sm:w-auto bg-white text-primary-dark hover:bg-gray-100 font-bold text-lg h-14 px-8 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-                                    <Download className="mr-2 h-5 w-5" /> Download App
+                                <Button
+                                    size="lg"
+                                    className="group w-full sm:w-auto bg-white text-primary-dark font-bold text-lg h-14 px-8 rounded-full shadow-xl shadow-black/10 hover:shadow-2xl hover:scale-105 hover:bg-white transition-all duration-300 flex items-center gap-2"
+                                >
+                                    Join Now <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                                 </Button>
                             </Link>
                             <Link href="/contact">
-                                <Button variant="outline" size="lg" className="w-full sm:w-auto bg-transparent border-white/20 text-white hover:bg-white/10 font-medium text-lg h-14 px-8 rounded-full">
-                                    Contact Sales <ArrowRight className="ml-2 h-5 w-5" />
+                                <Button variant="outline" size="lg" className="group w-full sm:w-auto bg-transparent border-white/20 text-white font-medium text-lg h-14 px-8 rounded-full hover:bg-transparent hover:text-white">
+                                    Contact Sales <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                                 </Button>
                             </Link>
                         </div>

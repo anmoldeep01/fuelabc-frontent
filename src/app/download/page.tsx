@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { StoreButton } from "@/components/StoreButton";
-import { Smartphone, Apple, Download, QrCode, CheckCircle, ArrowLeft } from "lucide-react";
+import { Smartphone, Download, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
@@ -20,12 +20,7 @@ export default function DownloadPage() {
 
                 <div className="grid lg:grid-cols-2 gap-12 items-start mb-24">
                     <div className="space-y-8">
-                        <ScrollAnimation animation="fadeUp" delay={0.1}>
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary-dark text-sm font-medium">
-                                <Download className="w-4 h-4" />
-                                Download Now
-                            </div>
-                        </ScrollAnimation>
+
 
                         <ScrollAnimation animation="fadeUp" delay={0.2}>
                             <h1 className="text-4xl md:text-6xl font-bold font-heading text-primary-dark">
@@ -62,19 +57,9 @@ export default function DownloadPage() {
                                     }
                                     className="w-full"
                                 />
+
                                 <StoreButton
-                                    href={appStoreUrl}
-                                    storeName="App Store"
-                                    subtitle="Download on the"
-                                    icon={
-                                        <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.49.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                                        </svg>
-                                    }
-                                    className="w-full"
-                                />
-                                <StoreButton
-                                    href="https://www.indusappstore.com/"
+                                    href="https://www.indusappstore.com/apps/maps-and-navigation/fuel-abc/com.fuel.abc.app/?page=details&id=com.fuel.abc.app"
                                     storeName="Indus Appstore"
                                     subtitle="Available on"
                                     icon={
@@ -109,7 +94,7 @@ export default function DownloadPage() {
                                     className="w-full"
                                 />
                                 <StoreButton
-                                    href="https://apkpure.com/"
+                                    href="https://apkpure.com/fuel-abc-save-fuel/com.fuel.abc/download/"
                                     storeName="APKPure"
                                     subtitle="Download APK"
                                     icon={
@@ -124,11 +109,23 @@ export default function DownloadPage() {
                                     className="w-full"
                                 />
                                 <StoreButton
+                                    href={appStoreUrl}
+                                    storeName="App Store"
+                                    subtitle="Download on the"
+                                    icon={
+                                        <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.49.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                                        </svg>
+                                    }
+                                    className="w-full"
+                                />
+                                <StoreButton
                                     href="/fuelabc.apk"
-                                    storeName="APK file"
-                                    subtitle="Download Directly"
+                                    storeName="Direct Download"
+                                    subtitle="APK file"
                                     icon={<Download className="w-8 h-8" />}
                                     className="w-full sm:col-span-2 sm:w-auto sm:justify-self-center"
+                                    variant="primary"
                                 />
                             </div>
                         </ScrollAnimation>
@@ -169,7 +166,7 @@ export default function DownloadPage() {
 
                     <ScrollAnimation animation="slideLeft" delay={0.4} className="relative flex justify-center">
                         {/* Mockup Placeholder */}
-                        <div className="relative w-full max-w-[300px] aspect-[1/2] bg-black rounded-[2.5rem] border-[6px] border-gray-900 shadow-2xl overflow-hidden">
+                        <div className="relative w-full max-w-[300px] h-[580px] bg-black rounded-[2.5rem] border-[6px] border-gray-900 shadow-2xl overflow-hidden">
                             <Image
                                 src="/app-mockup.jpg"
                                 alt="FUELabc App Screenshot"
@@ -233,7 +230,7 @@ export default function DownloadPage() {
                             <h3 className="font-bold text-xl mb-3 text-primary-dark">System Requirements</h3>
                             <div className="space-y-2 text-muted-foreground">
                                 <p><strong className="text-foreground">iOS:</strong> Requires iOS 13.0 or later</p>
-                                <p><strong className="text-foreground">Android:</strong> Requires Android 8.0 or later</p>
+                                <p><strong className="text-foreground">Android:</strong> Requires Android 9.0 or later</p>
                             </div>
                             <p className="text-sm text-muted-foreground mt-6">
                                 Need help? <Link href="/contact" className="text-primary hover:underline font-medium">Contact support</Link>

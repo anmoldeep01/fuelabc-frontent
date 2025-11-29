@@ -55,43 +55,44 @@ export function Testimonials() {
                     </div>
                 </ScrollAnimation>
 
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-3 gap-8 justify-center">
                     {testimonials.map((testimonial, index) => (
-                        <ScrollAnimation key={index} animation="fadeUp" delay={index * 0.2} className="h-full">
-                            <Card className="h-full border-none shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-shadow duration-300">
-                                <CardContent className="p-8 flex flex-col h-full">
-                                    <Quote className="w-10 h-10 text-primary/20 mb-6" />
+                        <div key={index} className="h-full flex justify-center">
+                            <Card className="h-full w-full max-w-[420px] border-none shadow-md hover:shadow-lg bg-white hover:-translate-y-1 transition-all duration-300 rounded-2xl">
+                                <CardContent className="pt-8 pb-10 px-10 flex flex-col h-full gap-6">
+                                    <Quote className="w-8 h-8 text-primary/20" />
 
-                                    <p className="text-lg text-foreground/80 mb-8 flex-1 italic">
+                                    <p className="text-[18px] leading-[1.75] text-[#333] flex-1 italic">
                                         &quot;{testimonial.content}&quot;
                                     </p>
 
-                                    <div className="flex items-center gap-4 mt-auto">
-                                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg">
+                                    <div className="flex items-center gap-4 mt-auto pt-2 border-t border-gray-100/50">
+                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-base shrink-0">
                                             {testimonial.initials}
                                         </div>
-                                        <div>
-                                            <h4 className="font-bold text-primary-dark">{testimonial.name}</h4>
-                                            <div className="flex items-center gap-1 flex-wrap">
-                                                <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                                                <span className="flex items-center text-xs text-green-600 bg-green-100 px-1.5 py-0.5 rounded-full">
+                                        <div className="flex-1 min-w-0">
+                                            <h4 className="text-[20px] font-bold text-foreground truncate">{testimonial.name}</h4>
+                                            <div className="flex items-center gap-2 flex-wrap mt-0.5">
+                                                <p className="text-sm text-[#666] truncate">{testimonial.role}</p>
+                                                <span className="flex items-center text-xs text-green-600 bg-green-50 px-1.5 py-0.5 rounded-full border border-green-100">
                                                     <CheckCircle className="w-3 h-3 mr-1" /> Verified
                                                 </span>
                                             </div>
-                                            <p className="text-xs text-muted-foreground mt-1">{testimonial.location} • {testimonial.timeAgo}</p>
+                                            <p className="text-xs text-[#666] mt-1 truncate">{testimonial.location} • {testimonial.timeAgo}</p>
                                         </div>
-                                        <div className="ml-auto flex gap-0.5">
-                                            {[...Array(5)].map((_, i) => (
-                                                <Star
-                                                    key={i}
-                                                    className={`w-4 h-4 ${i < testimonial.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}`}
-                                                />
-                                            ))}
-                                        </div>
+                                    </div>
+
+                                    <div className="flex gap-1 justify-start">
+                                        {[...Array(5)].map((_, i) => (
+                                            <Star
+                                                key={i}
+                                                className={`w-4 h-4 ${i < testimonial.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-200"}`}
+                                            />
+                                        ))}
                                     </div>
                                 </CardContent>
                             </Card>
-                        </ScrollAnimation>
+                        </div>
                     ))}
                 </div>
             </div>

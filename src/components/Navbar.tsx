@@ -13,6 +13,7 @@ const navLinks = [
     { name: "How it Works", href: "/#how-it-works" },
     { name: "Features", href: "/features" },
     { name: "Pricing", href: "/pricing" },
+    { name: "Blog", href: "/blog" },
     { name: "API", href: "https://api.ssrinnovationlab.com/api/browse/", external: true },
     { name: "Contact", href: "/contact" },
 ];

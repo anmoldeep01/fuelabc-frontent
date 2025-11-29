@@ -27,7 +27,7 @@ const faqs = [
 
 export default function PricingPage() {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
-    const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
+    const billingCycle = 'yearly';
 
     return (
         <div className="min-h-screen bg-background pt-24 pb-40 relative overflow-hidden">
@@ -62,24 +62,7 @@ export default function PricingPage() {
                         Choose the plan that fits your journey.
                     </motion.p>
 
-                    {/* Billing Toggle */}
-                    <div className="flex items-center justify-center gap-4 mb-8">
-                        <span className={`text-sm font-medium transition-colors ${billingCycle === 'monthly' ? 'text-gray-900' : 'text-gray-500'}`}>Monthly</span>
-                        <button
-                            onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
-                            className="w-14 h-8 bg-primary rounded-full p-1 relative transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20"
-                            aria-label="Toggle billing cycle"
-                        >
-                            <motion.div
-                                animate={{ x: billingCycle === 'yearly' ? 24 : 0 }}
-                                className="w-6 h-6 bg-white rounded-full shadow-sm"
-                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                            />
-                        </button>
-                        <span className={`text-sm font-medium transition-colors ${billingCycle === 'yearly' ? 'text-gray-900' : 'text-gray-500'}`}>
-                            Yearly <span className="text-xs text-accent font-bold ml-1">(Save 20%)</span>
-                        </span>
-                    </div>
+
                 </div>
 
                 {/* Desktop Layout */}
@@ -117,9 +100,7 @@ export default function PricingPage() {
                                 </div>
                             ))}
                         </div>
-                        <div className="p-6 bg-gray-50/50">
-                            <Button className="w-full bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-xl transition-all">Choose Basic</Button>
-                        </div>
+
                     </motion.div>
 
                     {/* Column 3: Premium Plan */}
@@ -161,9 +142,7 @@ export default function PricingPage() {
                                 </div>
                             ))}
                         </div>
-                        <div className="p-6 bg-primary/5">
-                            <Button className="w-full bg-primary text-white hover:bg-primary-dark rounded-xl shadow-lg py-6 text-lg transition-all transform hover:scale-105">Choose Premium</Button>
-                        </div>
+
                     </motion.div>
                 </div>
 
@@ -264,7 +243,7 @@ export default function PricingPage() {
             </div>
 
             {/* Bottom Offer Section */}
-            <motion.div
+            {/* <motion.div
                 initial={{ y: 100 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 1, type: "spring" }}
@@ -301,7 +280,7 @@ export default function PricingPage() {
                         Select <ArrowRight className="w-4 h-4" />
                     </motion.button>
                 </div>
-            </motion.div>
+            </motion.div> */}
         </div>
     );
 }

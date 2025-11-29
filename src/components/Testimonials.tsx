@@ -36,7 +36,7 @@ const testimonials = [
 
 export function Testimonials() {
     return (
-        <section className="py-24 bg-primary/5 relative overflow-hidden">
+        <section className="py-16 bg-primary/5 relative overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
@@ -45,7 +45,7 @@ export function Testimonials() {
 
             <div className="container mx-auto px-4 relative z-10">
                 <ScrollAnimation animation="fadeUp">
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-10">
                         <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4 text-primary-dark">
                             Loved by Drivers
                         </h2>
@@ -55,11 +55,11 @@ export function Testimonials() {
                     </div>
                 </ScrollAnimation>
 
-                <div className="grid md:grid-cols-3 gap-8 justify-center">
+                <div className="grid md:grid-cols-3 gap-6 justify-center">
                     {testimonials.map((testimonial, index) => (
                         <div key={index} className="h-full flex justify-center">
                             <Card className="h-full w-full max-w-[420px] border-none shadow-md hover:shadow-lg bg-white hover:-translate-y-1 transition-all duration-300 rounded-2xl">
-                                <CardContent className="pt-8 pb-10 px-10 flex flex-col h-full gap-6">
+                                <CardContent className="p-6 flex flex-col h-full gap-4">
                                     <Quote className="w-8 h-8 text-primary/20" />
 
                                     <p className="text-[18px] leading-[1.75] text-[#333] flex-1 italic">
@@ -79,16 +79,15 @@ export function Testimonials() {
                                                 </span>
                                             </div>
                                             <p className="text-xs text-[#666] mt-1 truncate">{testimonial.location} • {testimonial.timeAgo}</p>
+                                            <div className="flex gap-1 justify-start mt-2">
+                                                {[...Array(5)].map((_, i) => (
+                                                    <Star
+                                                        key={i}
+                                                        className={`w-4 h-4 ${i < testimonial.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-200"}`}
+                                                    />
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div className="flex gap-1 justify-start">
-                                        {[...Array(5)].map((_, i) => (
-                                            <Star
-                                                key={i}
-                                                className={`w-4 h-4 ${i < testimonial.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-200"}`}
-                                            />
-                                        ))}
                                     </div>
                                 </CardContent>
                             </Card>

@@ -1,14 +1,16 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { Check, Play, ArrowRight, Sparkles, HelpCircle, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Check, Play, HelpCircle, Smartphone, MonitorSmartphone, X } from "lucide-react";
+import { motion } from "framer-motion";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { useState } from "react";
+import { Modal } from "@/components/ui/Modal";
+import Link from "next/link";
 
 const features = [
-    { name: "Fuel Price — en route", description: "Real-time fuel prices along your planned route.", basic: false, premium: true },
-    { name: "Trip Fuel Cost — alternate routes", description: "Compare fuel costs for different route options.", basic: false, premium: true },
+    { name: "Fuel Price — en route", description: "Real-time fuel prices along your planned route.", basic: false, premium: true, hasVideo: true, videoUrl: "https://www.youtube.com/embed/Z_YXZyb6vjo?autoplay=1" },
+    { name: "Trip Fuel Cost — alternate routes", description: "Compare fuel costs for different route options.", basic: false, premium: true, hasVideo: true, videoUrl: "https://www.youtube.com/embed/R4husJ8p5jI?autoplay=1" },
     { name: "Fuel Price — All Districts", description: "Access fuel prices for all districts nationwide.", basic: true, premium: true },
     { name: "Mileage — vs Speed", description: "Analyze how speed affects your vehicle's mileage.", basic: true, premium: true },
     { name: "Cost/Km — vs Speed", description: "Understand the cost per kilometer at different speeds.", basic: true, premium: true },
@@ -26,8 +28,13 @@ const faqs = [
 ];
 
 export default function PricingPage() {
-    const [openFaq, setOpenFaq] = useState<number | null>(null);
-    const billingCycle = 'yearly';
+    const [isVideoOpen, setIsVideoOpen] = useState(false);
+    const [videoUrl, setVideoUrl] = useState("");
+
+    const handleOpenVideo = (url: string) => {
+        setVideoUrl(url);
+        setIsVideoOpen(true);
+    };
 
     return (
         <div className="min-h-screen bg-background pt-24 pb-40 relative overflow-hidden">
@@ -38,7 +45,8 @@ export default function PricingPage() {
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="text-center mb-12">
+                {/* Header */}
+                <div className="text-center mb-16">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -49,7 +57,7 @@ export default function PricingPage() {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-5xl font-bold font-heading mb-4 text-primary-dark"
+                        className="text-4xl md:text-5xl font-bold font-heading mb-6 text-primary-dark"
                     >
                         Simple, Transparent Pricing
                     </motion.h1>
@@ -57,230 +65,177 @@ export default function PricingPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-xl text-muted-foreground mb-8"
+                        className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
                     >
-                        Choose the plan that fits your journey.
+                        Choose the plan that fits your journey. Save more with our yearly plans.
                     </motion.p>
 
-
-                </div>
-
-                {/* Desktop Layout */}
-                <div className="hidden md:grid grid-cols-3 gap-0 max-w-5xl mx-auto mb-20">
-                    {/* Column 1: Features List */}
-                    <div className="pt-32"> {/* Spacer for alignment with plan headers */}
-                        {features.map((feature, i) => (
-                            <div key={i} className="h-16 flex items-center px-6 border-b border-gray-100 group">
-                                <span className="text-gray-700 font-medium mr-2">{feature.name}</span>
-                                <Tooltip content={feature.description}>
-                                    <HelpCircle className="w-4 h-4 text-gray-400 hover:text-primary cursor-help transition-colors" />
-                                </Tooltip>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Column 2: Basic Plan */}
+                    {/* Marketing Line */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="bg-white rounded-t-[30px] rounded-b-[30px] shadow-lg shadow-gray-100/50 border border-gray-200 overflow-hidden flex flex-col relative z-0 mx-2"
+                        className="flex items-center justify-center"
                     >
-                        <div className="p-8 text-center bg-gray-50/50 h-32 flex flex-col justify-center">
-                            <h3 className="text-xl font-bold text-gray-700">Basic</h3>
-                            <div className="text-3xl font-bold text-gray-900 mt-2">
-                                {billingCycle === 'yearly' ? '₹49' : '₹5'}
-                                <span className="text-sm font-normal text-muted-foreground">/{billingCycle === 'yearly' ? 'yr' : 'mo'}</span>
-                            </div>
+                        <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20 shadow-sm">
+                            <span className="text-lg font-medium text-primary-dark">
+                                Start saving thousands on fuel for less than a cup of tea ☕
+                            </span>
                         </div>
-                        <div className="flex-1 bg-white">
-                            {features.map((feature, i) => (
-                                <div key={i} className="h-16 flex items-center justify-center border-b border-gray-50">
-                                    {feature.basic ? <Check className="w-5 h-5 text-primary" /> : <div className="w-4 h-1 bg-gray-200 rounded-full" />}
-                                </div>
-                            ))}
-                        </div>
-
-                    </motion.div>
-
-                    {/* Column 3: Premium Plan */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="bg-gradient-to-b from-white to-primary/5 rounded-t-[30px] rounded-b-[30px] shadow-2xl border border-primary/20 overflow-hidden flex flex-col relative z-10 -mt-4 ring-4 ring-primary/10"
-                    >
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent" />
-                        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-accent text-primary-dark text-xs font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wider">
-                            Best Value
-                        </div>
-                        <div className="p-8 text-center h-36 flex flex-col justify-center relative mt-4">
-                            <div className="absolute top-4 right-4">
-                                <Sparkles className="w-5 h-5 text-accent animate-pulse" />
-                            </div>
-                            <h3 className="text-2xl font-bold text-primary-dark">Premium</h3>
-                            <div className="text-4xl font-bold text-primary-dark mt-2">
-                                {billingCycle === 'yearly' ? '₹120' : '₹15'}
-                                <span className="text-sm font-normal text-muted-foreground">/{billingCycle === 'yearly' ? 'yr' : 'mo'}</span>
-                            </div>
-                        </div>
-                        <div className="flex-1">
-                            {features.map((feature, i) => (
-                                <div key={i} className="h-16 flex items-center justify-center border-b border-primary/5 bg-white/50">
-                                    <div className="flex items-center gap-3">
-                                        <Check className="w-5 h-5 text-primary" />
-                                        {!feature.basic && (
-                                            <motion.button
-                                                whileHover={{ scale: 1.1 }}
-                                                className="p-1 rounded-full bg-accent/20 text-primary-dark hover:bg-accent hover:text-white transition-colors"
-                                                title="Watch Demo"
-                                            >
-                                                <Play className="w-3 h-3 fill-current" />
-                                            </motion.button>
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
                     </motion.div>
                 </div>
 
-                {/* Mobile Layout (Stacked) */}
-                <div className="md:hidden space-y-8 mt-8 mb-20">
-                    {/* Basic Plan Mobile */}
-                    <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100">
-                        <div className="text-center mb-6">
-                            <h3 className="text-xl font-bold text-gray-700">Basic</h3>
-                            <div className="text-3xl font-bold text-gray-900 my-2">
-                                {billingCycle === 'yearly' ? '₹49' : '₹5'}
-                                <span className="text-sm font-normal text-muted-foreground">/{billingCycle === 'yearly' ? 'yr' : 'mo'}</span>
-                            </div>
-                            <Button className="w-full bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-xl">Select</Button>
-                        </div>
-                        <div className="space-y-3">
-                            {features.map((f, i) => (
-                                <div key={i} className="flex items-center justify-between text-sm">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-muted-foreground">{f.name}</span>
-                                        <Tooltip content={f.description}>
-                                            <HelpCircle className="w-3 h-3 text-gray-400" />
-                                        </Tooltip>
-                                    </div>
-                                    {f.basic ? <Check className="w-4 h-4 text-primary" /> : <div className="w-3 h-1 bg-gray-200 rounded-full" />}
+                {/* Pricing Cards */}
+                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-24">
+                    {/* Basic Plan */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-xl shadow-gray-100/50 flex flex-col relative overflow-hidden"
+                    >
+                        <div className="mb-8">
+                            <div className="flex items-center gap-2 mb-4">
+                                <div className="p-2 bg-gray-100 rounded-lg">
+                                    <Smartphone className="w-6 h-6 text-gray-600" />
                                 </div>
-                            ))}
+                                <h3 className="text-xl font-bold text-gray-900">Basic</h3>
+                            </div>
+                            <div className="flex items-baseline gap-1 mb-2">
+                                <span className="text-5xl font-bold text-gray-900">FREE</span>
+                            </div>
+                            <p className="text-muted-foreground font-medium">For Android Users</p>
+                            <p className="text-sm text-gray-500 mt-2">Essential features to get you started with fuel tracking.</p>
                         </div>
-                    </div>
 
-                    {/* Premium Plan Mobile */}
-                    <div className="bg-gradient-to-b from-white to-primary/5 rounded-3xl p-6 shadow-xl border border-primary/20 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 bg-accent text-primary-dark text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-sm uppercase tracking-wider">
+                        <div className="flex-1 space-y-4 mb-8">
+                            {features.map((feature, i) => {
+                                const isHighlighted = !feature.basic && (feature.name.includes("en route") || feature.name.includes("alternate routes"));
+                                return (
+                                    <div key={i} className="flex items-start gap-3">
+                                        {feature.basic ? (
+                                            <Check className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                                        ) : (
+                                            <X className={`w-5 h-5 shrink-0 mt-0.5 ${isHighlighted ? 'text-red-500' : 'text-gray-300'}`} />
+                                        )}
+                                        <span className={`text-sm ${feature.basic || isHighlighted ? 'text-gray-600' : 'text-gray-400'}`}>
+                                            {feature.name}
+                                        </span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        <Link href="/download" className="block">
+                            <Button variant="outline" className="w-full rounded-xl py-6 text-lg border-2 hover:bg-gray-50 hover:text-primary-dark transition-all">
+                                Download for Android
+                            </Button>
+                        </Link>
+                    </motion.div>
+
+                    {/* Premium Plan */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.4 }}
+                        className="bg-gradient-to-b from-primary-dark to-[#0f3519] rounded-[2rem] p-8 text-white shadow-2xl shadow-primary/20 flex flex-col relative overflow-hidden ring-4 ring-primary/20"
+                    >
+                        {/* Best Value Badge */}
+                        <div className="absolute top-0 right-0 bg-accent text-primary-dark text-xs font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-wider">
                             Best Value
                         </div>
-                        <div className="text-center mb-6">
-                            <h3 className="text-xl font-bold text-primary-dark">Premium</h3>
-                            <div className="text-3xl font-bold text-primary-dark my-2">
-                                {billingCycle === 'yearly' ? '₹120' : '₹15'}
-                                <span className="text-sm font-normal text-muted-foreground">/{billingCycle === 'yearly' ? 'yr' : 'mo'}</span>
+
+                        <div className="mb-8 relative z-10">
+                            <div className="flex items-center gap-2 mb-4">
+                                <div className="p-2 bg-white/10 rounded-lg backdrop-blur-sm">
+                                    <MonitorSmartphone className="w-6 h-6 text-accent" />
+                                </div>
+                                <h3 className="text-xl font-bold text-white">Premium</h3>
                             </div>
-                            <Button className="w-full bg-primary text-white hover:bg-primary-dark rounded-xl shadow-lg">Select Premium</Button>
+                            <div className="flex items-baseline gap-1 mb-2">
+                                <span className="text-5xl font-bold text-white">
+                                    ₹120
+                                </span>
+                                <span className="text-white/60">/yr</span>
+                            </div>
+                            <p className="text-accent font-medium">7-Day Free Trial • iOS & Android</p>
+                            <p className="text-sm text-white/70 mt-2">Advanced tools for serious savings and route optimization.</p>
                         </div>
-                        <div className="space-y-3">
-                            {features.map((f, i) => (
-                                <div key={i} className="flex items-center justify-between text-sm">
-                                    <div className="flex items-center gap-2">
-                                        <span className="font-medium text-gray-700">{f.name}</span>
-                                        <Tooltip content={f.description}>
-                                            <HelpCircle className="w-3 h-3 text-gray-400" />
-                                        </Tooltip>
+
+                        <div className="flex-1 space-y-4 mb-8 relative z-10">
+                            {features.map((feature, i) => (
+                                <div key={i} className="flex items-start justify-between gap-3 group">
+                                    <div className="flex items-start gap-3">
+                                        <div className={`mt-0.5 rounded-full p-0.5 ${feature.premium ? 'bg-accent' : 'bg-white/20'}`}>
+                                            <Check className={`w-3 h-3 ${feature.premium ? 'text-primary-dark' : 'text-transparent'}`} />
+                                        </div>
+                                        <span className={`text-sm ${feature.premium ? 'text-white' : 'text-white/40'}`}>
+                                            {feature.name}
+                                        </span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        {!f.basic && <Play className="w-3 h-3 text-accent fill-current" />}
-                                        <Check className="w-4 h-4 text-primary" />
-                                    </div>
+                                    {feature.hasVideo && (
+                                        <button
+                                            onClick={() => handleOpenVideo(feature.videoUrl!)}
+                                            className="shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent/10 hover:bg-accent/20 text-accent border border-accent/20 transition-all text-xs font-medium group/btn"
+                                            title="Watch Feature Demo"
+                                        >
+                                            <Play className="w-3 h-3 fill-current group-hover/btn:scale-110 transition-transform" />
+                                            <span>Demo</span>
+                                        </button>
+                                    )}
                                 </div>
                             ))}
                         </div>
-                    </div>
+
+                        <div className="relative z-10 space-y-3">
+                            <Link href="/download" className="block">
+                                <Button className="w-full bg-accent text-primary-dark hover:bg-white hover:scale-[1.02] active:scale-[0.98] rounded-xl py-6 text-lg font-bold shadow-lg transition-all">
+                                    Start Free Trial
+                                </Button>
+                            </Link>
+                            <button
+                                onClick={() => handleOpenVideo("https://www.youtube.com/embed/Z_YXZyb6vjo?autoplay=1")}
+                                className="w-full flex items-center justify-center gap-2 text-sm text-white/80 hover:text-white transition-colors py-2"
+                            >
+                                <Play className="w-4 h-4 fill-current" />
+                                Watch Demo Video
+                            </button>
+                        </div>
+
+                        {/* Decorative background elements */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+                    </motion.div>
                 </div>
 
                 {/* FAQ Section */}
-                <div className="max-w-3xl mx-auto mb-20">
-                    <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Frequently Asked Questions</h2>
+                <div className="max-w-2xl mx-auto">
+                    <h2 className="text-2xl font-bold text-center mb-8 text-primary-dark">Frequently Asked Questions</h2>
                     <div className="space-y-4">
                         {faqs.map((faq, index) => (
-                            <motion.div
-                                key={index}
-                                initial={false}
-                                className="bg-white rounded-2xl border border-gray-100 overflow-hidden"
-                            >
-                                <button
-                                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                                    className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
-                                >
-                                    <span className="font-medium text-gray-700">{faq.question}</span>
-                                    <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${openFaq === index ? 'transform rotate-180' : ''}`} />
-                                </button>
-                                <AnimatePresence>
-                                    {openFaq === index && (
-                                        <motion.div
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: "auto", opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0.3 }}
-                                        >
-                                            <div className="px-6 pb-4 text-gray-600 text-sm leading-relaxed">
-                                                {faq.answer}
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </motion.div>
+                            <div key={index} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                                <h3 className="font-bold text-gray-900 mb-2">{faq.question}</h3>
+                                <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
+                            </div>
                         ))}
                     </div>
                 </div>
             </div>
 
-            {/* Bottom Offer Section */}
-            {/* <motion.div
-                initial={{ y: 100 }}
-                animate={{ y: 0 }}
-                transition={{ delay: 1, type: "spring" }}
-                className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
-            >
-                <div className="max-w-4xl mx-auto bg-gradient-to-r from-primary-dark to-green-800 rounded-2xl shadow-2xl p-4 md:p-6 flex items-center justify-between text-white overflow-hidden relative">
-                    <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay"></div>
-                    <div className="absolute -left-10 -top-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-
-                    <div className="flex items-center gap-4 md:gap-8 relative z-10">
-                        <div className="hidden md:block">
-                            <div className="text-xs font-bold uppercase tracking-wider text-accent mb-1">Limited Time Offer</div>
-                            <h3 className="text-2xl font-bold">Get Premium</h3>
-                        </div>
-                        <div className="flex items-baseline gap-3">
-                            <span className="text-lg text-white/60 line-through decoration-white/60">
-                                {billingCycle === 'yearly' ? '₹120/Yr' : '₹15/Mo'}
-                            </span>
-                            <motion.span
-                                animate={{ scale: [1, 1.1, 1] }}
-                                transition={{ duration: 2, repeat: Infinity }}
-                                className="text-3xl md:text-4xl font-bold text-accent"
-                            >
-                                {billingCycle === 'yearly' ? '₹89/Yr' : '₹12/Mo'}
-                            </motion.span>
-                        </div>
-                    </div>
-
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-white text-primary-dark px-6 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all flex items-center gap-2 relative z-10"
-                    >
-                        Select <ArrowRight className="w-4 h-4" />
-                    </motion.button>
+            {/* Video Modal */}
+            <Modal isOpen={isVideoOpen} onClose={() => setIsVideoOpen(false)} title="Feature Demo">
+                <div className="relative aspect-video w-full bg-black">
+                    <iframe
+                        width="100%"
+                        height="100%"
+                        src={videoUrl}
+                        title="Demo Video"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
                 </div>
-            </motion.div> */}
+            </Modal>
         </div>
     );
 }

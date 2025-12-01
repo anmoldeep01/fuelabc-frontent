@@ -1,14 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
-interface TooltipProps {
-    content: string;
-    children: React.ReactNode;
-}
-
-export function Tooltip({ content, children }: TooltipProps) {
+export function Tooltip({ content, children }: { content: string; children: React.ReactNode }) {
     const [isVisible, setIsVisible] = useState(false);
 
     return (

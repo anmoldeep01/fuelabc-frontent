@@ -126,6 +126,7 @@ export default function DownloadPage() {
                                     icon={<Download className="w-8 h-8" />}
                                     className="w-full sm:col-span-2 sm:w-auto sm:justify-self-center"
                                     variant="primary"
+                                    download={true}
                                 />
                             </div>
                         </ScrollAnimation>

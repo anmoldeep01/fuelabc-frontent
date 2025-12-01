@@ -1,17 +1,27 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound, useParams } from "next/navigation";
-import { ArrowLeft, Calendar, Clock, User, ArrowRight } from "lucide-react";
+import { notFound } from "next/navigation";
+import { ArrowLeft, Calendar, Clock, User, ArrowRight, ChevronRight, Home } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 import { BLOG_POSTS, FEATURED_POST } from "@/lib/blog-data";
 
-export default function BlogPostPage() {
-    const params = useParams();
-    const slug = params.slug as string;
+export async function generateStaticParams() {
+    const posts = BLOG_POSTS.map((post) => ({
+        slug: post.slug,
+    }));
+
+    // Add featured post if it's not in BLOG_POSTS
+    if (!BLOG_POSTS.find(p => p.slug === FEATURED_POST.slug)) {
+        posts.push({ slug: FEATURED_POST.slug });
+    }
+
+    return posts;
+}
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
 
     // Find post in both regular posts and featured post
     const post = BLOG_POSTS.find((p) => p.slug === slug) ||
@@ -28,19 +38,27 @@ export default function BlogPostPage() {
 
     return (
         <main className="min-h-screen pt-24 pb-20 bg-gray-50/50">
-            {/* Navigation Bar */}
+            {/* Breadcrumbs */}
             <div className="container mx-auto px-4 mb-8">
-                <Link href="/blog">
-                    <Button variant="ghost" className="group text-gray-600 hover:text-primary pl-0">
-                        <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-                        Back to Blog
-                    </Button>
-                </Link>
+                <nav className="flex items-center text-sm text-gray-500">
+                    <Link href="/" className="hover:text-primary transition-colors flex items-center gap-1">
+                        <Home className="w-4 h-4" />
+                        Home
+                    </Link>
+                    <ChevronRight className="w-4 h-4 mx-2 text-gray-400" />
+                    <Link href="/blog" className="hover:text-primary transition-colors">
+                        Blog
+                    </Link>
+                    <ChevronRight className="w-4 h-4 mx-2 text-gray-400" />
+                    <span className="text-gray-900 font-medium truncate max-w-[200px] md:max-w-md">
+                        {post.title}
+                    </span>
+                </nav>
             </div>
 
             <article className="container mx-auto px-4">
                 {/* Hero Section */}
-                <ScrollAnimation animation="fadeUp" duration={0.8}>
+                <ScrollAnimation animation="fadeUp" duration={0.5} animateOnLoad>
                     <div className="max-w-4xl mx-auto mb-12">
                         <div className="flex items-center gap-2 mb-6">
                             <span className="bg-primary/10 text-primary text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wide">
@@ -75,7 +93,7 @@ export default function BlogPostPage() {
                 </ScrollAnimation>
 
                 {/* Featured Image */}
-                <ScrollAnimation animation="scaleIn" delay={0.2} duration={0.8}>
+                <ScrollAnimation animation="scaleIn" duration={0.6}>
                     <div className="max-w-5xl mx-auto mb-16 relative aspect-video md:aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl">
                         <Image
                             src={post.image}
@@ -88,7 +106,7 @@ export default function BlogPostPage() {
                 </ScrollAnimation>
 
                 {/* Content */}
-                <ScrollAnimation animation="fadeUp" delay={0.3}>
+                <ScrollAnimation animation="fadeUp" delay={0.1}>
                     <div className="max-w-3xl mx-auto prose prose-lg prose-gray prose-headings:font-heading prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-a:text-primary hover:prose-a:text-primary-dark prose-img:rounded-xl mb-20">
                         <div dangerouslySetInnerHTML={{ __html: post.content }} />
                     </div>

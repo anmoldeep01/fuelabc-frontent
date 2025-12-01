@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calendar, Clock, User } from "lucide-react";
@@ -12,7 +10,7 @@ export default function BlogPage() {
         <main className="min-h-screen pt-24 pb-20">
             {/* Header Section */}
             <section className="container mx-auto px-4 mb-16">
-                <ScrollAnimation animation="fadeUp" duration={0.8}>
+                <ScrollAnimation animation="fadeUp" duration={0.5} animateOnLoad>
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <h1 className="font-heading text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                             Our <span className="text-primary">Blog</span>
@@ -24,7 +22,7 @@ export default function BlogPage() {
                 </ScrollAnimation>
 
                 {/* Featured Post */}
-                <ScrollAnimation animation="scaleIn" delay={0.2} duration={0.8}>
+                <ScrollAnimation animation="scaleIn" duration={0.6} animateOnLoad>
                     <Link href={`/blog/${FEATURED_POST.slug}`} className="block">
                         <div className="relative rounded-3xl overflow-hidden bg-white shadow-xl group cursor-pointer transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
                             <div className="grid md:grid-cols-2 gap-0">
@@ -70,7 +68,7 @@ export default function BlogPage() {
 
             {/* Recent Articles Grid */}
             <section className="container mx-auto px-4">
-                <ScrollAnimation animation="fadeUp" delay={0.4}>
+                <ScrollAnimation animation="fadeUp" delay={0.1}>
                     <div className="flex items-center justify-between mb-8">
                         <h3 className="font-heading text-2xl font-bold text-gray-900">Recent Articles</h3>
                     </div>
@@ -78,7 +76,7 @@ export default function BlogPage() {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {BLOG_POSTS.map((post, index) => (
-                        <ScrollAnimation key={post.id} animation="fadeUp" delay={0.1 * index} duration={0.6}>
+                        <ScrollAnimation key={post.id} animation="fadeUp" delay={0.1 * index} duration={0.5}>
                             <Link href={`/blog/${post.slug}`} className="block h-full">
                                 <article
                                     className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full border border-gray-100 hover:-translate-y-1"

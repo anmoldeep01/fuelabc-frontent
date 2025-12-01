@@ -19,7 +19,8 @@ export function ScrollAnimation({
     delay = 0,
     duration = 0.5,
     viewport = { once: true, margin: "-50px" },
-}: ScrollAnimationProps) {
+    animateOnLoad = false,
+}: ScrollAnimationProps & { animateOnLoad?: boolean }) {
 
     const variants = {
         hidden: {
@@ -45,8 +46,9 @@ export function ScrollAnimation({
         <motion.div
             className={className}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
+            whileInView={animateOnLoad ? undefined : "visible"}
+            animate={animateOnLoad ? "visible" : undefined}
+            viewport={animateOnLoad ? undefined : viewport}
             variants={variants}
         >
             {children}

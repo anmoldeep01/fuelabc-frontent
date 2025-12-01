@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react";
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export default function ContactPage() {
     return (

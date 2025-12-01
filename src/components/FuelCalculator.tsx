@@ -5,7 +5,7 @@ import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Calculator, TrendingDown, Droplets, IndianRupee, AlertCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export function FuelCalculator() {
     const [distance, setDistance] = useState<string>("50");

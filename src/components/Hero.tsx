@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight, Zap, Leaf, TrendingUp, MapPin, DollarSign } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export function Hero() {
     return (

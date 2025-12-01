@@ -6,7 +6,7 @@ import { Smartphone, Download, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export default function DownloadPage() {
     const playStoreUrl = "https://play.google.com/store/apps/details?id=com.fuel.abc&hl=en_IN";

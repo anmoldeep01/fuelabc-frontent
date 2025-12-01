@@ -5,7 +5,7 @@ import { BarChart3, Map, Calculator, Activity, FileText, Zap, ArrowRight } from 
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const features = [
     {

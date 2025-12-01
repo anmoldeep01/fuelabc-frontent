@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { Car, UserPlus, Smile } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
 

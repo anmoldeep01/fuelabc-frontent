@@ -1,7 +1,7 @@
 "use client";
 
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
-import { motion, useInView, useSpring, useTransform } from "framer-motion";
+import { motion, useInView, useSpring, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
 import { Download, Users, Droplets, Star } from "lucide-react";
 

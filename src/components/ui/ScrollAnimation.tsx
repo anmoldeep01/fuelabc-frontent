@@ -1,15 +1,15 @@
 "use client";
 
-import { motion, useInView, UseInViewOptions } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "motion/react";
+import { ReactNode } from "react";
 
 interface ScrollAnimationProps {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
     animation?: "fadeUp" | "fadeIn" | "scaleIn" | "slideRight" | "slideLeft";
     delay?: number;
     duration?: number;
-    viewport?: UseInViewOptions;
+    viewport?: { once?: boolean; margin?: string; amount?: number | "some" | "all" };
 }
 
 export function ScrollAnimation({
@@ -20,8 +20,6 @@ export function ScrollAnimation({
     duration = 0.5,
     viewport = { once: true, margin: "-50px" },
 }: ScrollAnimationProps) {
-    const ref = useRef(null);
-    const isInView = useInView(ref, viewport);
 
     const variants = {
         hidden: {
@@ -45,10 +43,10 @@ export function ScrollAnimation({
 
     return (
         <motion.div
-            ref={ref}
             className={className}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={viewport}
             variants={variants}
         >
             {children}

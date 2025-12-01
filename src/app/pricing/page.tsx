@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { Check, Play, HelpCircle, Smartphone, MonitorSmartphone, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { useState } from "react";
 import { Modal } from "@/components/ui/Modal";
